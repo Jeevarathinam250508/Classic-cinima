@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CLASSIC CINIMA'S</title>
+<link rel="icon" href="large.png">
+</head>
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:Segoe UI;
+text-align:center;
+}
+.jeeva{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#020617;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:26px;
+    font-weight:bold;
+    color:#facc15;
+}
+
+.logo img{
+    height:45px;
+    width:45px;
+    border-radius:50%;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+}
+.slider{
+    position:relative;
+    width:90%;
+    margin:20px auto;
+    overflow:hidden;
+    border-radius:10px;
+}
+
+.slides{
+    display:flex;
+}
+
+.slide{
+    min-width:100%;
+    height:180px;
+    object-fit:cover;
+    display:none;
+}
+
+.slide.active{
+    display:block;
+}
+
+.prev, .next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    padding:10px;
+    cursor:pointer;
+    font-size:20px;
+    border-radius:50%;
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+
+.dots{
+    text-align:center;
+    margin-top:10px;
+}
+
+.dot{
+    height:10px;
+    width:10px;
+    margin:5px;
+    background:#555;
+    display:inline-block;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.dot.active{
+    background:#38bdf8;
+}
+.screen-options{
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.screen-box{
+    flex:1;
+    padding:20px;
+    background:#1e293b;
+    border-radius:10px;
+    cursor:pointer;
+    text-align:center;
+    transition:0.3s;
+    border:2px solid transparent;
+}
+
+.screen-box:hover{
+    transform:scale(1.05);
+    background:#334155;
+}
+
+.screen-box.active{
+    border:2px solid #38bdf8;
+    background:#0ea5e9;
+    color:black;
+}
+.screen{
+    width:80%;
+    height:40px;
+    margin:40px auto;
+    background:linear-gradient(to right,#e2e8f0,#94a3b8);
+    border-radius:50px 50px 10px 10px;
+    text-align:center;
+    font-weight:bold;
+    line-height:40px;
+    color:black;
+    box-shadow:0 10px 30px rgba(255,255,255,0.2);
+}
+
+.seats{
+display:grid;
+grid-template-columns:repeat(8,40px);
+gap:10px;
+justify-content:center;
+}
+
+.seats input{
+display:none;
+}
+
+.seats label{
+width:40px;
+height:40px;
+background:#1e293b;
+display:block;
+border-radius:5px;
+cursor:pointer;
+}
+
+.seats input:checked + label{
+background:#38bdf8;
+}
+
+button{
+margin-top:30px;
+padding:10px 20px;
+background:#38bdf8;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+footer{
+background:#020617;
+padding:40px 20px;
+text-align:center;
+}
+
+.footer-content h2{
+color:#facc15;
+margin-bottom:10px;
+}
+
+.footer-content p{
+margin:5px 0;
+color:#cbd5f5;
+}
+
+.contact{
+margin-top:15px;
+}
+
+.social{
+margin-top:20px;
+}
+
+.social a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.social a:hover{
+color:#38bdf8;
+}
+
+.copy{
+margin-top:20px;
+font-size:14px;
+color:#94a3b8;
+}
+</style>
+
+
+<body>
+<div class="jeeva">
+
+<div class="logo">
+    <img src="large.png">
+    <span>Classic Cinema's</span>
+</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="movlist.html">Movies</a>
+<a href="theatreinfo.html">Theatres info</a>
+<a href="contact.html">Contact</a>
+</div>
+</div>
+<div class="slider">
+
+    <div class="slides">
+        <img src="offer1.jpg" class="slide active">
+        <img src="offer2.jpg" class="slide">
+        <img src="offer3.jpg" class="slide">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+</div>
+<h3>Select Screen</h3>
+
+<div class="screen-options">
+
+    <div class="screen-box" onclick="selectScreen(this, 'Screen 1')">
+        <h4>Screen 1</h4>
+        <p>4K • Dolby 5.1</p>
+    </div>
+
+    <div class="screen-box" onclick="selectScreen(this, 'Screen 2')">
+        <h4>Screen 2</h4>
+        <p>2K • Dolby Atmos</p>
+    </div>
+
+    <div class="screen-box" onclick="selectScreen(this, 'Screen 3')">
+        <h4>Screen 3</h4>
+        <p>IMAX • DTS:X</p>
+    </div>
+
+</div>
+<h2>Select Seats</h2>
+
+<div class="screen">SCREEN</div>
+
+<h3>Budget (₹100)</h3>
+<div class="seats budget">
+
+<input type="checkbox" id="s1" value="100">
+<label for="s1"></label>
+
+<input type="checkbox" id="s2" value="100">
+<label for="s2"></label>
+
+<input type="checkbox" id="s3" value="100">
+<label for="s3"></label>
+
+<input type="checkbox" id="s4" value="100">
+<label for="s4"></label>
+
+<input type="checkbox" id="s5" value="100">
+<label for="s5"></label>
+
+<input type="checkbox" id="s6" value="100">
+<label for="s6"></label>
+
+<input type="checkbox" id="s7" value="100">
+<label for="s7"></label>
+
+<input type="checkbox" id="s8" value="100">
+<label for="s8"></label>
+<input type="checkbox" id="s9" value="100">
+<label for="s9"></label>
+
+<input type="checkbox" id="s10" value="100">
+<label for="s10"></label>
+
+<input type="checkbox" id="s11" value="100">
+<label for="s11"></label>
+
+<input type="checkbox" id="s12" value="100">
+<label for="s12"></label>
+
+<input type="checkbox" id="s13" value="100">
+<label for="s13"></label>
+
+<input type="checkbox" id="s14" value="100">
+<label for="s14"></label>
+
+<input type="checkbox" id="s15" value="100">
+<label for="s15"></label>
+
+<input type="checkbox" id="s16" value="100">
+<label for="s16"></label>
+</div>
+<h3>Silver (₹150)</h3>
+<div class="seats silver">
+<input type="checkbox" id="s17" value="150                                      ">
+<label for="s17"></label>
+
+<input type="checkbox" id="s18" value="150">
+<label for="s18"></label>
+
+<input type="checkbox" id="s19" value="150">
+<label for="s19"></label>
+
+<input type="checkbox" id="s20" value="150">
+<label for="s20"></label>
+
+<input type="checkbox" id="s21" value="150">
+<label for="s21"></label>
+
+<input type="checkbox" id="s22" value="150">
+<label for="s22"></label>
+
+<input type="checkbox" id="s23" value="150">
+<label for="s23"></label>
+
+<input type="checkbox" id="s24" value="150">
+<label for="s24"></label>
+<input type="checkbox" id="s25" value="150">
+<label for="s25"></label>
+
+<input type="checkbox" id="s26" value="150">
+<label for="s26"></label>
+
+<input type="checkbox" id="s27" value="150">
+<label for="s27"></label>
+
+<input type="checkbox" id="s28" value="150">
+<label for="s28"></label>
+
+<input type="checkbox" id="s29" value="150">
+<label for="s29"></label>
+
+<input type="checkbox" id="s30" value="150">
+<label for="s30"></label>
+
+<input type="checkbox" id="s31" value="150  ">
+<label for="s31"></label>
+
+<input type="checkbox" id="s32" value="150">
+<label for="s32"></label>
+<input type="checkbox" id="s33" value="150">
+<label for="s33"></label>
+
+<input type="checkbox" id="s34" value="150">
+<label for="s34"></label>
+
+<input type="checkbox" id="s35" value="150">
+<label for="s35"></label>
+
+<input type="checkbox" id="s36" value="150">
+<label for="s36"></label>
+
+<input type="checkbox" id="s37" value="150">
+<label for="s37"></label>
+
+<input type="checkbox" id="s38" value="150">
+<label for="s38"></label>
+
+<input type="checkbox" id="s39" value="150">
+<label for="s39"></label>
+
+<input type="checkbox" id="s40" value="150  ">
+<label for="s40"></label>
+<input type="checkbox" id="s41" value="150">
+<label for="s41"></label>
+
+<input type="checkbox" id="s42" value="150">
+<label for="s42"></label>
+
+<input type="checkbox" id="s43" value="150">
+<label for="s43"></label>
+
+<input type="checkbox" id="s44" value="150">
+<label for="s44"></label>
+
+<input type="checkbox" id="s45" value="150">
+<label for="s45"></label>
+
+<input type="checkbox" id="s46" value="150">
+<label for="s46"></label>
+
+<input type="checkbox" id="s47" value="150">
+<label for="s47"></label>
+
+<input type="checkbox" id="s48" value="150">
+<label for="s48"></label>
+</div>
+<h3>Gold (₹200)</h3>
+<div class="seats gold">
+  
+<input type="checkbox" id="s49" value="200">
+<label for="s49"></label>
+
+<input type="checkbox" id="s50" value="200">
+<label for="s50"></label>
+
+<input type="checkbox" id="s51" value="200">
+<label for="s51"></label>
+
+<input type="checkbox" id="s52" value="200">
+<label for="s52"></label>
+
+<input type="checkbox" id="s53" value="200">
+<label for="s53"></label>
+
+<input type="checkbox" id="s54" value="200">
+<label for="s54"></label>
+
+<input type="checkbox" id="s55" value="200">
+<label for="s55"></label>
+
+<input type="checkbox" id="s56" value="200">
+<label for="s56"></label>
+<input type="checkbox" id="s57" value="200">
+<label for="s57"></label>
+
+<input type="checkbox" id="s58" value="200">
+<label for="s58"></label>
+
+<input type="checkbox" id="s59" value="200">
+<label for="s59"></label>
+
+<input type="checkbox" id="s60" value="200">
+<label for="s60"></label>
+
+<input type="checkbox" id="s61" value="200">
+<label for="s61"></label>
+
+<input type="checkbox" id="s62" value="200">
+<label for="s62"></label>
+
+<input type="checkbox" id="s63" value="200">
+<label for="s63"></label>
+
+<input type="checkbox" id="s64" value="200">
+<label for="s64"></label>
+<input type="checkbox" id="s65" value="200">
+<label for="s65"></label>
+
+<input type="checkbox" id="s66" value="200">
+<label for="s66"></label>
+
+<input type="checkbox" id="s67" value="200">
+<label for="s67"></label>
+
+<input type="checkbox" id="s68" value="200">
+<label for="s68"></label>
+
+<input type="checkbox" id="s69" value="200">
+<label for="s69"></label>
+
+<input type="checkbox" id="s70" value="200">
+<label for="s70"></label>
+
+<input type="checkbox" id="s71" value="200">
+<label for="s71"></label>
+
+<input type="checkbox" id="s72" value="200">
+<label for="s72"></label>
+<input type="checkbox" id="s73" value="200">
+<label for="s73"></label>
+
+<input type="checkbox" id="s74" value="200">
+<label for="s74"></label>
+
+<input type="checkbox" id="s75" value="200">
+<label for="s75"></label>
+
+<input type="checkbox" id="s76" value="200">
+<label for="s76"></label>
+
+<input type="checkbox" id="s77" value="200">
+<label for="s77"></label>
+
+<input type="checkbox" id="s78" value="200">
+<label for="s78"></label>
+
+<input type="checkbox" id="s79" value="200">
+<label for="s79"></label>
+
+<input type="checkbox" id="s80" value="200">
+<label for="s80"></label>
+<input type="checkbox" id="s81" value="200">
+<label for="s81"></label>
+
+<input type="checkbox" id="s82" value="200">
+<label for="s82"></label>
+
+<input type="checkbox" id="s83" value="200">
+<label for="s83"></label>
+
+<input type="checkbox" id="s84" value="200">
+<label for="s84"></label>
+
+<input type="checkbox" id="s85" value="200">
+<label for="s85"></label>
+
+<input type="checkbox" id="s86" value="200">
+<label for="s86"></label>
+
+<input type="checkbox" id="s87" value="200">
+<label for="s87"></label>
+
+<input type="checkbox" id="s88" value="200">
+<label for="s88"></label>
+</div>
+
+<form action="confirm.html">
+    <input type="hidden" id="screenName" name="screen">
+    <input type="hidden" id="seatNames" name="seats">
+    <input type="hidden" id="seatCount" name="tickets">
+    <input type="hidden" id="movieName" name="movie">
+    <input type="hidden" id="movieImg" name="img">
+    <input type="hidden" id="totalPrice" name="price">
+    <button type="submit" onclick="return getSeats()">Confirm Seats</button>
+</form>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let dots = document.querySelectorAll(".dot");
+let index = 0;
+
+function showSlide(i){
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
+}
+
+document.querySelector(".next").onclick = () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}
+document.querySelector(".prev").onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+}
+
+
+dots.forEach((dot, i) => {
+    dot.onclick = () => {
+        index = i;
+        showSlide(index);
+    }
+});
+
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}, 3000);
+
+function selectScreen(element, screenName){
+
+    document.querySelectorAll(".screen-box").forEach(box => {
+        box.classList.remove("active");
+    });
+    element.classList.add("active");
+    document.getElementById("screenName").value = screenName;
+}
+
+function getSeats(){
+
+    let screen = document.getElementById("screenName").value;
+
+    if(screen === ""){
+        alert("⚠️ Please select a screen!");
+        return false;
+    }
+
+    let selectedSeats = document.querySelectorAll('.seats input:checked');
+
+    let count = selectedSeats.length;
+    let total = 0;
+    let seatList = [];
+
+    if(count === 0){
+        alert("⚠️ Please select at least 1 seat!");
+        return false;
+    }
+
+    selectedSeats.forEach((seat, index) => {
+        total += Number(seat.value);
+
+        let row = String.fromCharCode(65 + Math.floor(index / 8));
+        let number = (index % 8) + 1;
+
+        seatList.push(row + number);
+    });
+
+    document.getElementById("seatCount").value = count;
+    document.getElementById("totalPrice").value = total;
+    document.getElementById("seatNames").value = seatList.join(", ");
+
+    let params = new URLSearchParams(window.location.search);
+
+    document.getElementById("movieName").value = params.get("movie");
+    document.getElementById("movieImg").value = params.get("img");
+
+    return true;
+}
+</script>
+<footer>
+    <div class="footer-content">
+
+        <h2>Classic Cinema's</h2>
+
+        <p>Experience movies like never before at Classic Cinema.</p>
+        <p>Comfort • Quality • Entertainment 🎬</p>
+
+        <div class="contact">
+            <p>📍 Chennai, Tamil Nadu</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📧 classiccinema@gmail.com</p>
+        </div>
+
+        <div class="social">
+            <a href="#">🌐 Website</a>
+            <a href="#">📘 Facebook</a>
+            <a href="#">📸 Instagram</a>
+            <a href="#">🐦 Twitter</a>
+        </div>
+
+        <p class="copy">&copy; 2026 Classic Cinema. All rights reserved.</p>
+
+    </div>
+</footer>
+</body>
+</html>

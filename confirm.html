@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cinima Ticket</title>
+    <link rel="icon" href="large.png">
+</head>
+<style>
+    body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#0f172a;
+}
+.jeeva{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#020617;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:26px;
+    font-weight:bold;
+    color:#facc15;
+}
+
+.logo img{
+    height:45px;
+    width:45px;
+    border-radius:50%;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+}
+.main{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:calc(100vh - 80px);
+}
+.container{
+    display:flex;
+    width:850px;
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+.left{
+    width:40%;
+}
+
+.left img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.right{
+    width:60%;
+    padding:30px;
+    color:white;
+}
+
+.right h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#38bdf8;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#0ea5e9;
+}
+.screen-badge{
+    text-align:center;
+    background:#0ea5e9;
+    color:black;
+    padding:8px;
+    border-radius:20px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+footer{
+background:#020617;
+padding:40px 20px;
+text-align:center;
+}
+
+.footer-content h2{
+color:#facc15;
+margin-bottom:10px;
+}
+
+.footer-content p{
+margin:5px 0;
+color:#cbd5f5;
+}
+
+.contact{
+margin-top:15px;
+}
+
+.social{
+margin-top:20px;
+}
+
+.social a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.social a:hover{
+color:#38bdf8;
+}
+
+.copy{
+margin-top:20px;
+font-size:14px;
+color:#94a3b8;
+}
+</style>
+<body>
+    <div class="jeeva">
+    <div class="logo">
+    <img src="large.png">
+        <span>Classic Cinema's</span>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="movlist.html">Movies</a>
+        <a href="theatreinfo.html">Theatres info</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    </div>
+<div class="main">
+    <div class="container">
+
+    <div class="left">
+        <img id="moviePoster" src="">
+    </div>
+
+    <div class="right">
+        <h2 id="movieTitle">🎟 Book Ticket</h2>
+        <div id="screenInfo" class="screen-badge"></div>
+        <p id="seatDisplay" class="screen-badge"></p>
+       <input type="text" id="nameInput" placeholder="Enter Name">
+<input type="text" id="mobileInput" placeholder="Mobile Number">
+
+        <input type="date" id="showDate">
+
+<select id="showTime">
+    <option>Select Show Time</option>
+    <option>09:00 AM</option>
+    <option>11:15 AM</option>
+    <option>03:00 PM</option>
+    <option>06:15 PM</option>
+    <option>10:00 PM</option>
+</select>
+
+        <input type="number" id="ticketInput" readonly>
+        <input type="text" id="price" readonly>
+        <input type="hidden" id="totalPrice" name="price">
+        <button onclick="generatePDF()">Confirm Booking</button>
+    </div>
+
+</div>
+    </div>
+    <footer>
+    <div class="footer-content">
+
+        <h2>Classic Cinema's</h2>
+
+        <p>Experience movies like never before at Classic Cinema.</p>
+        <p>Comfort • Quality • Entertainment 🎬</p>
+
+        <div class="contact">
+            <p>📍 Chennai, Tamil Nadu</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📧 classiccinema@gmail.com</p>
+        </div>
+
+        <div class="social">
+            <a href="#">🌐 Website</a>
+            <a href="#">📘 Facebook</a>
+            <a href="#">📸 Instagram</a>
+            <a href="#">🐦 Twitter</a>
+        </div>
+
+        <p class="copy">&copy; 2026 Classic Cinema. All rights reserved.</p>
+
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</body>
+<script>
+let params = new URLSearchParams(window.location.search);
+let screen = params.get("screen");
+let tickets = params.get("tickets");
+let total = params.get("price");
+let movie = params.get("movie");
+let img = params.get("img");
+let seats = params.get("seats");
+
+if(seats){
+    document.getElementById("seatDisplay").innerText = "Seats: " + seats;
+}
+if(screen){
+    document.getElementById("screenInfo").innerText = screen;
+}
+if(tickets){
+    document.getElementById("ticketInput").value = tickets;
+}
+
+if(total){
+    document.getElementById("price").value = "₹" + total;
+}
+
+if(movie){
+    document.getElementById("movieTitle").innerText = movie;
+}
+
+if(img){
+    document.getElementById("moviePoster").src = img;
+}
+</script>
+<script>
+async function generatePDF(){
+
+    if(!window.jspdf){
+        alert("PDF library not loaded");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+
+    let name = document.getElementById("nameInput").value;
+    let mobile = document.getElementById("mobileInput").value;
+    let date = document.getElementById("showDate").value;
+    let time = document.getElementById("showTime").value;
+
+    if(!name || !mobile || !date || time === "Select Show Time"){
+        alert("⚠️ Please fill all details");
+        return;
+    }
+
+    let movie = document.getElementById("movieTitle").innerText;
+    let screen = document.getElementById("screenInfo").innerText;
+    let seats = document.getElementById("seatDisplay").innerText;
+    let tickets = document.getElementById("ticketInput").value;
+    let price = document.getElementById("price").value;
+    let poster = document.getElementById("moviePoster").src;
+
+    let doc = new jsPDF();
+    doc.setFillColor(30, 41, 59); 
+    doc.rect(10, 10, 190, 270, "F");
+    doc.setTextColor(255, 204, 21); 
+    doc.setFontSize(18);
+    doc.text("CLASSIC CINEMA", 60, 25);
+    doc.text(movie, 40, 50);
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(12);
+
+    doc.text("screen no  :" + screen, 20, 60);
+    doc.text("Seats no   : " + seats, 20, 70);
+    doc.text("Tickets    : " + tickets, 20, 80);
+    doc.text("Date       : " + date, 20, 90);
+    doc.text("Time       : " + time, 20, 100);  
+    doc.text("Total      :" + price, 20, 110);
+
+    let y = 120;
+
+    doc.text("Name       : " + name, 20, y);
+    y += 10;
+
+    doc.text("Mobile     : " + mobile, 20, y);
+    y += 12;
+
+    doc.setDrawColor(150);
+    doc.line(20, y, 190, y);
+    y += 8;
+
+    doc.setFontSize(10);
+    doc.text("Terms & Conditions", 20, y);
+    y += 8;
+    doc.setFontSize(9);
+    doc.text("• Tickets are non-refundable and non-transferable.", 20, y);
+    y += 7;
+    doc.text("• Please carry a valid ID proof for verification.", 20, y);
+    y += 7;
+    doc.text("• Entry will not be allowed after showtime.", 20, y);
+    y += 7;
+    doc.text("• Follow theatre rules & safety guidelines.", 20, y);
+    y += 10;
+
+    doc.setFontSize(10);
+    doc.text("Enjoy your movie! ", 105, y,);
+    try{
+        let imgData = await toDataURL(poster);
+        doc.addImage(imgData, "JPEG", 120, 40, 60, 80);
+    }catch(e){
+        console.log("Image load failed");
+    }
+    doc.setDrawColor(255, 204, 21);
+    doc.rect(10, 10, 190, 270);
+    doc.save("Classic_Cinema_Ticket.pdf");
+}
+function toDataURL(url) {
+    return fetch(url)
+        .then(res => res.blob())
+        .then(blob => new Promise((resolve) => {
+            let reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+        }));
+}
+</script>
+</html>

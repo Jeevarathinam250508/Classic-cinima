@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Theatre Info</title>
+<link rel="icon" href="large.png">
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#0f172a;
+    color:white;
+}
+
+.jeeva{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#020617;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:26px;
+    font-weight:bold;
+    color:#facc15;
+}
+
+.logo img{
+    height:45px;
+    width:45px;
+    border-radius:50%;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+}
+.slider{
+    position:relative;
+    width:90%;
+    height:300px;
+    margin:30px auto;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+.slides{
+    display:flex;
+}
+
+.slide{
+    min-width:100%;
+    height:300px;
+    object-fit:contain;   
+    background:#000;      
+    display:none;
+}
+
+.slide.active{
+    display:block;
+}
+
+.prev, .next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    padding:12px;
+    cursor:pointer;
+    font-size:22px;
+    border-radius:50%;
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+
+.theatre-section{
+    padding:40px;
+    text-align:center;
+}
+
+.theatre-images{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.theatre-images img{
+    width:220px;
+    height:150px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.info-flex{
+    display:flex;
+    gap:30px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.address{
+    flex:1;
+    text-align:left;
+}
+
+.map{
+    flex:1;
+}
+
+.map iframe{
+    width:100%;
+    height:250px;
+    border-radius:10px;
+}
+
+.food-section{
+    padding:40px;
+}
+
+.food-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.food-card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    width:150px;
+}
+
+.food-card img{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.food-card h4{
+    margin:10px 0 5px;
+}
+
+.food-card p{
+    color:#38bdf8;
+}
+
+footer{
+background:#020617;
+padding:40px 20px;
+text-align:center;
+}
+
+.footer-content h2{
+color:#facc15;
+margin-bottom:10px;
+}
+
+.footer-content p{
+margin:5px 0;
+color:#cbd5f5;
+}
+
+.contact{
+margin-top:15px;
+}
+
+.social{
+margin-top:20px;
+}
+
+.social a{
+margin:0 10px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.social a:hover{
+color:#38bdf8;
+}
+
+.copy{
+margin-top:20px;
+font-size:14px;
+color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="jeeva">
+    <div class="logo">
+        <img src="large.png">
+        <span>Classic Cinema's</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="movlist.html">Movies</a>
+        <a href="theatreinfo.html">Theatres info</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+
+<div class="theatre-section">
+
+    <h1>🎬 Our Theatre</h1>
+
+    <div class="slider">
+
+    <div class="slides">
+        <img src="theatre.png" class="slide active">
+        <img src="screen1.jpg" class="slide">
+        <img src="screen2.jpg" class="slide">
+        <img src="screen3.jpg" class="slide">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+
+</div>
+
+    <div class="info-box">
+
+    <div class="info-flex">
+
+        <div class="address">
+            <h3>Experience world-class cinema with Dolby sound and luxury seating.</h3>
+            <h3>Enjoy movies in a premium environment with best comfort.</h3>
+            <h2>📍 Theatre Address :-</h2>
+            <h4>3rd Floor, VR Mall,Anna Nagar, Chennai,Tamil Nadu - 600040</h4>
+            <h4>Phone: +91 98765 43210</h4>
+            <h4>Email: classiccinema@gmail.com</h4>
+        </div>
+
+        <div class="map">
+            <iframe src="https://maps.google.com/maps?q=VR Mall Anna Nagar Chennai&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="food-section">
+
+    <h2 style="text-align:center;">🍿 Food & Beverages</h2>
+
+    <div class="food-container">
+
+        <div class="food-card">
+            <img src="pop.jpg">
+            <h4>Popcorn</h4>
+            <p>₹120</p>
+        </div>
+
+        <div class="food-card">
+            <img src="coke.jpg">
+            <h4>Coke</h4>
+            <p>₹80</p>
+        </div>
+
+        <div class="food-card">
+            <img src="burger.jpg">
+            <h4>Burger</h4>
+            <p>₹150</p>
+        </div>
+
+        <div class="food-card">
+            <img src="pizza.jpg">
+            <h4>Pizza</h4>
+            <p>₹200</p>
+        </div>
+
+        <div class="food-card">
+            <img src="nochos.jpg">
+            <h4>Nachos</h4>
+            <p>₹140</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-content">
+
+        <h2>Classic Cinema's</h2>
+
+        <p>Experience movies like never before at Classic Cinema.</p>
+        <p>Comfort • Quality • Entertainment 🎬</p>
+
+        <div class="contact">
+            <p>📍 Chennai, Tamil Nadu</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📧 classiccinema@gmail.com</p>
+        </div>
+
+        <div class="social">
+            <a href="#">🌐 Website</a>
+            <a href="#">📘 Facebook</a>
+            <a href="#">📸 Instagram</a>
+            <a href="#">🐦 Twitter</a>
+        </div>
+
+        <p class="copy">&copy; 2026 Classic Cinema. All rights reserved.</p>
+
+    </div>
+</footer>
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(i){
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+document.querySelector(".next").onclick = () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}
+
+document.querySelector(".prev").onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+}
+
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}, 3000);
+</script>
+</body>
+</html>
